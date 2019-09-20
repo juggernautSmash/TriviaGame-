@@ -2,28 +2,28 @@ let charAttribute = []
 let userCharacter = {}
 let progressCounter = [0, 0, 0 ,0 ,0, 0, 0]
 
-const questions1 = [
-    {// First Question
-        question: "Who Am I?",
-        answer: "someone"
-    },
-    {// Second Question
-         question: "What time period was I born?",
-        answer: "some time period"
-    },
-    {// Third Question
-         question: "which nation do I hail from?",
-        answer: "some nation"
-    },
-    {// Fourth Question
-        question: "Where is my existance recorded?",
-     answer: "something"
-    },
-    {// Fifth Question
-        question3: "What is my weapon of choice",
-        answer: "some weapon"
-    }
-]
+// const questions1 = [
+//     {// First Question
+//         question: "Who Am I?",
+//         answer: "someone"
+//     },
+//     {// Second Question
+//          question: "What time period was I born?",
+//         answer: "some time period"
+//     },
+//     {// Third Question
+//          question: "which nation do I hail from?",
+//         answer: "some nation"
+//     },
+//     {// Fourth Question
+//         question: "Where is my existance recorded?",
+//      answer: "something"
+//     },
+//     {// Fifth Question
+//         question3: "What is my weapon of choice",
+//         answer: "some weapon"
+//     }
+// ]
 
 const questionPack = [
     questionaire1,
@@ -124,18 +124,64 @@ renderUserChar = user => {// Generate user character in the arena
     generateTrivia(userCharacter)
 }// end renderUserChar
 
+const randomList = (x) => {
+    //console.log(`running randomList`)
+    //console.log(`x.index is ${x.index}`)
+	let answerArray = []
+	if (x.index < 5){
+		for(let i = 0; i < 4 ; i++){
+			answerArray.push(x.index + i)
+		}
+	}
+	else{
+		for(let i = 0; i < 4 ; i++){
+			answerArray.push(x.index - i)
+		}
+	}
+
+    answerArray = shuffle(answerArray)
+    console.log(`answerArray is: ${answerArray}`)
+    return answerArray
+}
+
+
+const shuffle = (array) => {
+    for(var i = array.length, j, tmp; i--; ){
+        j = 0|(Math.random() * i);
+        tmp = array[j];
+        array[j] = array[i];
+        array[i] = tmp;
+    }
+    return array;
+}
+
 generateTrivia = charChoice => {
+    console.log(`running generateTrivia`)
+    //console.log(`charChoice.index is ${charChoice.index}`)
+    let answerChoiceArray = randomList(charChoice)
+    //console.log(`answerChoiceArray is ${answerChoiceArray}`)
+
+    //reset the page
+    document.getElementById('question').innerHTML=''
+    document.getElementById('answerChoices').innerHTML=''
+
     let newQuestion = document.createElement('div') 
     newQuestion.className = 'question'
         newQuestion.innerHTML = `
             <div>
                 <p>
-                    ${charChoice.questionaire[progressCounter[charChoice.progress]].question}
+                    ${charChoice.questionaire[charChoice.progress].question}
                 </p>
             </div>
         `
 
-    let answerChoice = ['lorem', 'impsum', 'veritas', 'consectetur']
+    let answerChoice = [
+        charAttribute[answerChoiceArray[0]].questionaire[userCharacter.progress].answer,
+        charAttribute[answerChoiceArray[1]].questionaire[userCharacter.progress].answer,
+        charAttribute[answerChoiceArray[2]].questionaire[userCharacter.progress].answer,
+        charAttribute[answerChoiceArray[3]].questionaire[userCharacter.progress].answer
+    ]
+    console.log(`The choices are: ${answerChoice}`)
 
     let newAnswers = document.createElement('form')
     newAnswers.className = 'answers'
@@ -155,7 +201,7 @@ generateTrivia = charChoice => {
     document.getElementById('answerButton').className='waves-effect waves-yellow btn-large red scale-transition'
 }
 
-removeCard = div => {
+const removeCard = div => {
     let divBlock = document.getElementById(div)
     let blockChild = document.getElementById(div)
     divBlock.remove(blockChild)
@@ -202,9 +248,9 @@ document.getElementById('answerButton').addEventListener('click', event => {
     if(answer === userCharacter.questionaire[userCharacter.progress].answer){
         console.log(`answer is correct`)
         // increment userCharacter.progress
-        // userCharacter.progress++
+        userCharacter.progress++
         // generate next question
-        // generateTrivia(userCharacter)
+        generateTrivia(userCharacter)
     }/* end if */ else{
         console.log(`answer is wrong`)
     }
