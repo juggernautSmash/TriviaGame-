@@ -1,0 +1,81 @@
+#block{
+    width: 100%;
+}
+
+body{
+    /* background-image: url(../images/bg.png);
+    background-size: auto;
+    background-attachment: fixed;
+    background-repeat: no-repeat; */
+    background-color: black;
+}
+
+#instructions{
+    /* background-color: gray; */
+    color: white;
+    font-size: 50px;
+    font-family: 'Brush Script MT', 'Brush Script Std', cursive;
+    margin-top: 25px;
+    padding-right: 25px;
+    padding-left: 25px;
+    text-shadow: 5px 5px 8px red
+    /* line-height: 10px; */
+    /* margin-bottom: 50px; */
+}
+
+#storyProgress {
+    /* background-color: gray; */
+    font-size: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-shadow: 5px 5px 8px red;
+    text-align: center;
+    margin-top: 25px;
+    height: 200px;
+    padding-right: 100px;
+    padding-left: 100px;
+    /* line-height: 10px; */
+    /* margin-bottom: 50px; */
+}
+
+#storyBoard {
+    text-align: center;
+}
+
+.carousel{
+    margin-top: -100px;
+    perspective: none !important;
+    height: 500px !important;
+}
+
+.card {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+    background-color: transparent !important;
+}
+
+.card-title{
+    position: relative;
+    margin-top: -90px;
+    /* background-image: url(../images/redbg.png); */
+}
+
+.question-attribute {
+    /* background-color: gray; */
+    font-family: 'Arial Black';
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 30px;
+    color: gold;
+    text-shadow: 5px 5px 8px red;
+    text-align: left
+}
+
+.answer-attribute {
+    /* background-color: gray; */
+    font-family: 'Arial Black';
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 30px;
+    color: gold;
+    text-shadow: 5px 5px 8px red;
+    text-align: left
+}
