@@ -258,6 +258,8 @@ document.getElementById('answerButton').addEventListener('click', event => {
     //userCharacter.progress++
     charAttribute[userCharacter.index].progress++
     document.getElementById(`character-img${userCharacter.index}`).dataset.progress = userCharacter.progress++
+    document.getElementById(`correctAnswers`).innerText = correctAnswers
+    document.getElementById(`wrongAnswers`).innerText = wrongAnswers
     console.log(`character progress is now ${userCharacter.progress}`)
     console.log(`charAttribute progress updated to ${charAttribute[userCharacter.index].progress    }`)
     
